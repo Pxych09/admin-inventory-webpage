@@ -167,6 +167,7 @@ async function loadInventoryData() {
 }
 
 function renderInventoryData() {
+    $('.display-section').innerHTML = ``;
     if (inventoryData.length === 0) {
         console.log("No inventory data available");
         return;
