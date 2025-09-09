@@ -16,10 +16,6 @@ body {
     margin: 0; padding: 0;
     display: none !important;
 }
-.inventory-page, .login-page {
-    border: 1px solid red;
-    padding: 1em;
-}
 .header {
     margin-block: .5em;
 }
@@ -30,6 +26,7 @@ header{
     display: flex;
     gap: .5em;
     align-items: center;
+    padding: .5rem;
 }
 header > div {
     padding: .5em;
@@ -276,7 +273,6 @@ button {
 
 .display-section {
     margin-block: .5em;
-    border: 1px solid red;
     display: grid; gap: 1em;
     padding-block: .5em;
 }
@@ -398,4 +394,5 @@ button {
     background-color: #fff;
     position: sticky;
     margin: 0; top: 0;
+    padding: 0rem 1rem;
 }

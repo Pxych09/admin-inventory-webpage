@@ -112,24 +112,26 @@ $('#logoutBtn').addEventListener('click', async () => {
         await auth.signOut();
         console.log('Logged out, showing login page');
         showLoginPage();
+        $('.display-section').style.display = "none";
     } catch (error) {
         console.error('Logout error:', error.message);
     }
 });
 
 function showLoginPage() {
+    
+    $('.message-prompt').style.display = 'none';
     $('#loginPage').classList.remove('hidden');
     $('.inventory-page').classList.add('hidden');
     $('#username').value = '';
     $('#password').value = '';
-
-    setTimeout(()=> { $('.message-prompt').style.display = 'none'; }, 1000)
 }
 
 function showInventoryPage() {
     $('#loginPage').classList.add('hidden');
     $('.inventory-page').classList.remove('hidden');
     loadInventoryData();
+    $('.display-section').style.display = "grid";
     
     // Set username in UI
     const user = auth.currentUser;
@@ -198,7 +200,7 @@ function renderInventoryData() {
             </div>
             </details>
         `
-        parentEl.append(childEl);
+        parentEl.appendChild(childEl);
     }
 
 }
@@ -305,4 +307,3 @@ editForm.addEventListener('submit', async (e) => {
         alert('Error updating entry: ' + error.message);
     }
 });
-
