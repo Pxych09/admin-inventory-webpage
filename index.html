@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/14199/14199118.png" type="image/png">
+    <script src="/yourpage/system-inventory.js" defer></script>
+</head>
+<body>
+
+    <div class="message-prompt">
+        <div class="loader spinner" aria-label="Loading" role="status"></div>
+    </div>
+
+    <!-- Custom Confirm Modal -->
+    <!-- Confirm Dialog -->
+    <dialog id="confirmDialog" class="rounded-lg p-5 shadow-lg">
+    <form method="dialog">
+        <p id="confirmText" class="mb-4 text-lg text-gray-800">Are you sure?</p>
+        <menu class="flex justify-end space-x-3">
+        <button value="cancel" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">
+            Cancel
+        </button>
+        <button value="ok" class="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600">
+            Yes, Delete
+        </button>
+        </menu>
+    </form>
+    </dialog>
+
+
+    <div id="loginPage" class="login-container">
+
+        <div class="login-card card">
+            <h1 class="login-title">Inventory System</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input type="text" id="username" class="form-input" required autocomplete="true">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="inventory-page hidden">
+        <div class="header">
+            <header>
+                <div class="icon-profile"><h4 id="user">User</h4></div>
+                <div class="title"><h4>Admin Inventory</h4></div>
+                <div class="logout-btn"><h4 id="logoutBtn">Logout</h4></div>
+            </header>
+        </div>
+        <div class="open-add-inventory">
+            <button id="openInventoryModal" class="btn-secondary">Add Entry</button>
+        </div>
+
+        <div class="overlay hidden"></div>
+        <form class="add-inventory-form hide-form" id="inventoryForm">
+            <div class="open-add-inventory">
+            <button class="closeInventoryModal btn-secondary">Close</button>
+            </div>
+            <div class="form-container">
+                <h3>Section I: Process</h3>
+                <div class="divider">
+                    <label for="requestor">Requestor  <span>required</span></label>
+                    <input type="text" id="requestor" placeholder="Name of Requestor">
+                </div>
+                <div class="divider">
+                    <label for="process">Process <span>required</span></label>
+                    <select id="process" required>
+                        <option value="">Select Type of Process</option>
+                        <option value="On-boarding">On-boarding</option>
+                        <option value="Off-boarding">Off-boarding</option>
+                    </select>
+                </div>
+                <div class="divider">
+                    <label for="employee">Employee  <span>required</span></label>
+                    <select id="employee" required>
+                        <option value="">Select Type of Employee</option>
+                        <option value="HQ">HQ</option>
+                        <option value="BM">BM</option>
+                    </select>
+                </div>
+                <div class="divider">
+                    <label for="hired">Date of Hired  <span></span></label>
+                    <input type="date" id="hired">
+                </div>
+                <div class="divider">
+                    <label for="terminated">Date of Terminated  <span></span></label>
+                    <input type="date" id="terminated">
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section II: Information</h3>
+                <div class="divider">
+                    <label for="name">Name  <span>required</span></label>
+                    <input type="text" id="name" placeholder="Name of Employee" required autocomplete="true">
+                </div>
+                <div class="divider">
+                    <label for="email">Email  <span></span></label>
+                    <input type="email" id="email" placeholder="Provided Email" autocomplete="true">
+                </div>
+                <div class="divider">
+                    <label for="position">Position  <span></span></label>
+                    <input type="text" id="position" placeholder="Applied Position">
+                </div>
+                <div class="divider">
+                    <label for="contact">Contact  <span class="optional">optional</span></label>
+                    <input type="text" id="contact" placeholder="Contact Number">
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section III: Others</h3>
+                <div class="divider">
+                    <label for="notes">Notes  <span></span></label>
+                    <textarea id="notes" rows="3" placeholder="Write additional notes..."></textarea>
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section IV: Email</h3>
+                <div class="divider checkbox-group">
+                    <label>Groups  <span class="optional">optional</span></label>
+                    <div><input type="checkbox" id="accounting" value="accounting"><label for="accounting">Accounting</label></div>
+                    <div><input type="checkbox" id="operations" value="operations"><label for="operations">Operations</label></div>
+                    <div><input type="checkbox" id="it" value="it"><label for="it">IT</label></div>
+                    <div><input type="checkbox" id="rfp" value="rfp"><label for="rfp">Request for Payment</label></div>
+                    <div><input type="checkbox" id="security" value="security"><label for="security">Security</label></div>
+                    <div><input type="checkbox" id="hr" value="hr"><label for="hr">Human Resource</label></div>
+                    <div><input type="checkbox" id="info" value="info"><label for="info">Information</label></div>
+                    <div><input type="checkbox" id="concierge" value="concierge"><label for="concierge">Concierge</label></div>
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section V: Slack</h3>
+                <div class="divider">
+                    <p>Coming Soon...</p>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="divider">
+                    <button type="submit" class="btn-primary">Submit Entry</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- EDIT -->
+        <div class="overlay hidden"></div>
+        <form class="add-inventory-form hide-form" id="editForm">
+            <div class="open-add-inventory">
+            <button class="closeInventoryModal btn-secondary">Close</button>
+            </div>
+            <div class="form-container">
+                <h3>Section I: Process</h3>
+                <div class="divider">
+                    <label for="edit_requestor">Requestor  <span>required</span></label>
+                    <input type="text" id="edit_requestor" placeholder="Name of Requestor">
+                </div>
+                <div class="divider">
+                    <label for="edit_process">Process <span>required</span></label>
+                    <select id="edit_process" required>
+                        <option value="">Select Type of Process</option>
+                        <option value="On-boarding">On-boarding</option>
+                        <option value="Off-boarding">Off-boarding</option>
+                    </select>
+                </div>
+                <div class="divider">
+                    <label for="edit_employee">Employee  <span>required</span></label>
+                    <select id="edit_employee" required>
+                        <option value="">Select Type of Employee</option>
+                        <option value="HQ">HQ</option>
+                        <option value="BM">BM</option>
+                    </select>
+                </div>
+                <div class="divider">
+                    <label for="edit_hired">Date of Hired  <span></span></label>
+                    <input type="date" id="edit_hired">
+                </div>
+                <div class="divider">
+                    <label for="edit_terminated">Date of Terminated  <span></span></label>
+                    <input type="date" id="edit_terminated">
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section II: Information</h3>
+                <div class="divider">
+                    <label for="edit_name">Name  <span>required</span></label>
+                    <input type="text" id="edit_name" placeholder="Name of Employee" required autocomplete="true">
+                </div>
+                <div class="divider">
+                    <label for="edit_email">Email  <span></span></label>
+                    <input type="email" id="edit_email" placeholder="Provided Email" autocomplete="true">
+                </div>
+                <div class="divider">
+                    <label for="edit_position">Position  <span></span></label>
+                    <input type="text" id="edit_position" placeholder="Applied Position">
+                </div>
+                <div class="divider">
+                    <label for="edit_contact">Contact  <span class="optional">optional</span></label>
+                    <input type="text" id="edit_contact" placeholder="Contact Number">
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section III: Others</h3>
+                <div class="divider">
+                    <label for="edit_notes">Notes  <span></span></label>
+                    <textarea id="edit_notes" rows="3" placeholder="Write additional notes..."></textarea>
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section IV: Email</h3>
+                <div class="divider checkbox-group">
+                    <label>Groups  <span class="optional">optional</span></label>
+                    <div><input type="checkbox" id="edit_accounting" value="accounting"><label for="edit_accounting">Accounting</label></div>
+                    <div><input type="checkbox" id="edit_operations" value="operations"><label for="edit_operations">Operations</label></div>
+                    <div><input type="checkbox" id="edit_it" value="it"><label for="edit_it">IT</label></div>
+                    <div><input type="checkbox" id="edit_rfp" value="rfp"><label for="edit_rfp">Request for Payment</label></div>
+                    <div><input type="checkbox" id="edit_security" value="security"><label for="edit_security">Security</label></div>
+                    <div><input type="checkbox" id="edit_hr" value="hr"><label for="edit_hr">Human Resource</label></div>
+                    <div><input type="checkbox" id="edit_info" value="info"><label for="edit_info">Information</label></div>
+                    <div><input type="checkbox" id="edit_concierge" value="concierge"><label for="edit_concierge">Concierge</label></div>
+                </div>
+            </div>
+            <div class="form-container">
+                <h3>Section V: Slack</h3>
+                <div class="divider">
+                    <p>Coming Soon...</p>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="divider">
+                    <button type="submit" class="btn-primary">Update Entry</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="display-section">
+        <!-- script coded here... -->
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.min.js"></script>
+</body>
+</html>
