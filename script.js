@@ -122,6 +122,8 @@ function showLoginPage() {
     $('.inventory-page').classList.add('hidden');
     $('#username').value = '';
     $('#password').value = '';
+
+    setTimeout(()=> { $('.message-prompt').style.display = 'none'; }, 1000)
 }
 
 function showInventoryPage() {
