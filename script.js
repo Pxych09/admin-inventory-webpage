@@ -60,13 +60,15 @@ $('#inventoryForm').addEventListener('submit', async (e) => {
         requestor: $('#requestor').value,
         process: $('#process').value,
         employee: $('#employee').value,
-        hired: $('#hired').value,
-        terminated: $('#terminated').value,
+        hired: $('#received').value,
+        terminated: $('#accomplished').value,
         name: $('#name').value,
         email: $('#email').value,
         position: $('#position').value,
         contact: $('#contact').value,
-        notes: $('#notes').value, // Fixed: removed duplicate
+        hired: $('#hired').value,
+        terminated: $('#terminated').value,
+        notes: $('#notes').value, 
         emailGroups: emailGroups,
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
     };
@@ -258,12 +260,14 @@ window.editEntry = function(id) {
     $('#edit_requestor').value = entry.requestor || '';
     $('#edit_process').value = entry.process || '';
     $('#edit_employee').value = entry.employee || '';
-    $('#edit_hired').value = entry.hired || '';
-    $('#edit_terminated').value = entry.terminated || '';
+    $('#edit_received').value = entry.received || '';
+    $('#edit_accomplished').value = entry.accomplished || '';
     $('#edit_name').value = entry.name || '';
     $('#edit_email').value = entry.email || '';
     $('#edit_position').value = entry.position || '';
     $('#edit_contact').value = entry.contact || '';
+    $('#edit_hired').value = entry.hired || '';
+    $('#edit_terminated').value = entry.terminated || '';
     $('#edit_notes').value = entry.notes || '';
     ['edit_accounting', 'edit_operations', 'edit_it', 'edit_rfp', 'edit_security', 'edit_hr', 'edit_info', 'edit_concierge'].forEach(group => {document.getElementById(group).checked = entry.emailGroups && entry.emailGroups.includes(group.replace('edit_', '').toLowerCase()); });
 }
@@ -286,12 +290,14 @@ editForm.addEventListener('submit', async (e) => {
         requestor: $('#edit_requestor').value,
         process: $('#edit_process').value,
         employee: $('#edit_employee').value,
-        hired: $('#edit_hired').value,
-        terminated: $('#edit_terminated').value,
+        received: $('#edit_received').value,
+        accomplished: $('#edit_accomplished').value,
         name: $('#edit_name').value,
         email: $('#edit_email').value,
         position: $('#edit_position').value,
         contact: $('#edit_contact').value,
+        hired: $('#edit_hired').value,
+        terminated: $('#edit_terminated').value,
         notes: $('#edit_notes').value, // Fixed: removed duplicate
         emailGroups: emailGroups,
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
@@ -307,3 +313,4 @@ editForm.addEventListener('submit', async (e) => {
         alert('Error updating entry: ' + error.message);
     }
 });
+
